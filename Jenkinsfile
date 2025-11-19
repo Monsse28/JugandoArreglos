@@ -6,7 +6,7 @@ pipeline{
   triggers{
     githubPush()
   }
-  enviroment{
+  environment{
     POM="jugandoArreglos/pom.xml"
   }
   stages{
@@ -17,7 +17,7 @@ pipeline{
     }
     stage('Compilacion'){
       steps{
-        sh 'mvn -f $POM -B'
+        sh 'mvn -f $POM -B package'
       }
     }
     stage('Prueba'){
@@ -26,13 +26,12 @@ pipeline{
       }
       post{
         always{
-          junit 'jugandoArreglos/target/surfire-reports/*.xml'
+          junit 'jugandoArreglos/target/surefire-reports/*.xml'
         }
       }
     }
     stage('Empaquetado'){
       steps{
-        sh 'mvn -f $POM package'
         archiveArtifacts artifacts: ''jugandoArreglos/target/*.jar, fingerprint:true
       }
     }
