@@ -32,8 +32,9 @@ pipeline{
     }
     stage('Empaquetado'){
       steps{
-        archiveArtifacts artifacts: ''jugandoArreglos/target/*.jar, fingerprint:true
+        archiveArtifacts artifacts: 'jugandoArreglos/target/*.jar', fingerprint:true
       }
     }
   }
+}
 }
