@@ -26,7 +26,7 @@ pipeline{
       }
       post{
         always{
-          junit '**/target/surefire-reports/*.xml'
+          junit allowEmptyResults: true, testResults: 'jugandoArreglos/target/surefire-reports/*.xml'
         }
       }
     }
@@ -37,4 +37,3 @@ pipeline{
     }
   }
 }
-
